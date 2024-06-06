@@ -34,7 +34,7 @@ import com.example.animalsapi.presentation.viewmodels.AnimalDetailViewModel
 
 @Composable
 fun DetailScreen(
-    animalId : Int,
+    animalId : String,
     animalDetailViewModel: AnimalDetailViewModel = hiltViewModel()
 ){
 
@@ -77,48 +77,39 @@ fun DetailScreen(
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .fillMaxWidth()
-                    .padding(top = 10.dp),
+                    .padding(top = 10.dp, start = 16.dp, end = 16.dp),
                 style = TextStyle(
                     color = Color.DarkGray,
                     fontSize = 16.sp,
                     letterSpacing = 2.sp,
                 )
             )
-            Row(
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = "Hechos Interesantes",
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Star,
-                    contentDescription = "Rating",
-                    tint = Color.Yellow,
-                    modifier = Modifier.align(Alignment.CenterVertically)
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 10.dp, bottom = 10.dp),
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
                 )
-                Spacer(modifier = Modifier.weight(1f))
-                Box(
+            )
+            state.animal.facts.forEach { fact ->
+                Text(
+                    text = "• $fact",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .align(Alignment.CenterVertically)
-                        .background(
-                            color = Purple40,
-                            shape = RoundedCornerShape(8.dp)
-                        )
-                        .weight(1f)
-                        .padding(5.dp)
-                ) {
-                    Text(
-                        text = state.animal.environmentId,
-                        color = Color.White,
-                        style = TextStyle(
-                            fontSize = 12.sp
-                        ),
-                        modifier = Modifier.align(Alignment.Center)
+                        .padding(top = 4.dp, start = 16.dp, end = 16.dp),
+                    style = TextStyle(
+                        color = Color.DarkGray,
+                        fontSize = 16.sp,
+                        letterSpacing = 0.5.sp,
+                        lineHeight = 20.sp
                     )
-                }
+                )
             }
-            Spacer(modifier = Modifier.weight(1f))
-            Text(state.animal.description)
         }
     }
 }
@@ -129,5 +120,5 @@ fun DetailScreen(
 )
 @Composable
 fun DetailScreenPreview(){
-    DetailScreen(1)
+    DetailScreen("1")
 }

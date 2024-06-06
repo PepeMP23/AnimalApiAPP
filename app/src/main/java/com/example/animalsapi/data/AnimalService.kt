@@ -9,5 +9,5 @@ interface AnimalService {
     suspend fun getAnimals() : List<Animal>
 
     @GET("animals/{id}")
-    suspend fun getAnimalsById(@Path("id")id:Int) : Animal
+    suspend fun getAnimalsById(@Path("id")id:String) : Animal
 }

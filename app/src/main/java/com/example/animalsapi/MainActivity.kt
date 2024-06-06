@@ -68,11 +68,11 @@ class MainActivity : ComponentActivity() {
                             HomeScreen(navController)
                         }
                         composable(
-                            "detail/{animalId}",
-                            arguments = listOf(navArgument("animalId", {type = NavType.IntType})
+                            "animals/{animalId}",
+                            arguments = listOf(navArgument("animalId", {type = NavType.StringType})
                             )
                         ){
-                            val animalId = it.arguments?.getInt("animalId") ?: 0
+                            val animalId = it.arguments?.getString("animalId") ?: ""
                             DetailScreen(animalId)
                         }
                     }

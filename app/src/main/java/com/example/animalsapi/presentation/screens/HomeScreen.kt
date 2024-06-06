@@ -36,6 +36,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.animalsapi.R
+import com.example.animalsapi.presentation.theme.BackgroundCard
+import com.example.animalsapi.presentation.theme.BackgroundTitle
 import com.example.animalsapi.presentation.theme.Purple40
 import com.example.animalsapi.presentation.theme.PurpleGrey80
 import com.example.animalsapi.presentation.viewmodels.AnimalsViewModel
@@ -57,96 +59,81 @@ fun HomeScreen(
         }
     }
     else{
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            modifier = Modifier.padding(10.dp)
-        ){
-            items(state.animals){
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp)
-                        .clickable {
-                            navController.navigate("detail/${it.id}")
-                        }
-                        .padding(5.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = PurpleGrey80
+        Column(modifier = Modifier.fillMaxSize()) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(BackgroundTitle)
+                    .padding(24.dp)
+            ) {
+                Text(
+                    text = "Animales",
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 36.sp,
+                        color = Color.White  // Color de la letra
                     ),
-                    elevation = CardDefaults.cardElevation(10.dp)
-                ) {
-                    Column(
-                        modifier = Modifier.padding(5.dp)
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                modifier = Modifier.padding(10.dp)
+            ){
+                items(state.animals) {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                            .clickable {
+                                navController.navigate("animals/${it._id}")
+                            }
+                            .padding(10.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = BackgroundCard
+                        ),
+                        elevation = CardDefaults.cardElevation(10.dp)
                     ) {
-                        AsyncImage(
-                            model = it.image,
-                            contentDescription = null,
-                            placeholder = painterResource(id = R.drawable.ic_launcher_background),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(3f)
-                        )
-                        Text(
-                            text = it.name,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(0.5f),
-                            style = TextStyle(
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp
-                            )
-                        )
-                        Text(
-                            text = it.environmentId,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(0.5f),
-                            style = TextStyle(
-                                fontWeight = FontWeight.W300,
-                                fontSize = 12.sp,
-                                color = Color.DarkGray
-                            )
-                        )
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(1f)
+                        Column(
+                            modifier = Modifier.padding(5.dp)
                         ) {
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "Rating",
-                                tint = Color.Yellow,
-                                modifier = Modifier.align(Alignment.CenterVertically)
-                            )
-                            Spacer(modifier = Modifier.weight(1f))
-                            Box(
+                            AsyncImage(
+                                model = it.image,
+                                contentDescription = null,
+                                placeholder = painterResource(id = R.drawable.ic_launcher_background),
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .align(Alignment.CenterVertically)
-                                    .background(
-                                        color = Purple40,
-                                        shape = RoundedCornerShape(8.dp)
-                                    )
-                                    .weight(1f)
-                                    .padding(5.dp)
-                            ) {
-                                Text(
-                                    text = it.description,
-                                    color = Color.White,
-                                    style = TextStyle(
-                                        fontSize = 12.sp
-                                    )
+                                    .weight(3f)
+                            )
+                            Text(
+                                text = it.name,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .weight(0.5f),
+                                style = TextStyle(
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 24.sp
                                 )
-                            }
+                            )
+                            /*
+                            Text(
+                                text = it.environmentId,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .weight(0.5f),
+                                style = TextStyle(
+                                    fontWeight = FontWeight.W300,
+                                    fontSize = 18.sp,
+                                    color = Color.DarkGray
+                                )
+                            )
+                             */
                         }
                     }
                 }
-
             }
         }
     }
-
-
 }
 
 @Preview(

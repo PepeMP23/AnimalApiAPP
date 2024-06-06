@@ -16,7 +16,7 @@ class GetAnimals(
             val response = animalService.getAnimals()
             emit(ApiResult.Success(response))
         }
-        catch (e: Exception){
+        catch (e:Exception){
             emit(ApiResult.Error(message = "La peticion fallo", data = emptyList()))
         }
     }

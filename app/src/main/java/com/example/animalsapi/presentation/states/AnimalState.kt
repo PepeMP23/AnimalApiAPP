@@ -5,7 +5,7 @@ import com.example.animalsapi.domain.models.Animal
 data class AnimalState(
     val isLoading : Boolean = false,
     val animal : Animal = Animal(
-        id = 0,
+        _id = "",
         description = "",
         environmentId =  "",
         facts = listOf("","",""),

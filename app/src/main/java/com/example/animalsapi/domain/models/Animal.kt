@@ -1,7 +1,7 @@
 package com.example.animalsapi.domain.models
 
 data class Animal(
-    val id: Int,
+    val _id: String,
     val description: String,
     val environmentId: String,
     val facts: List<String>,
@@ -12,7 +12,7 @@ data class Animal(
     companion object{
         val animalList = List(10){
             Animal(
-                id = 1,
+                _id = "1",
                 description = "String",
                 environmentId =  "662d2505a9cc4064e6be3353",
                 facts = listOf("fact1","fact2","fact3"),

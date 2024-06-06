@@ -19,7 +19,8 @@ class AnimalDetailViewModel @Inject constructor (
     private val getAnimalUseCase : GetAnimalsById
 ) : ViewModel()
 {
-    private val animalId = savedStateHandle.get<Int>("animalId") ?: 0
+    //private val animalId: String = savedStateHandle.get<String>("animalId") ?: ""
+    private val animalId = savedStateHandle.get<String>("animalId") ?: ""
     private var animalJob : Job? = null
     private var  _animalState = mutableStateOf(AnimalState())
     val animalState = _animalState
